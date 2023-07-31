@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+       <h1> Send Email</h1>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-content">
+        <form [formGroup]="form" action="" class="form" (ngSubmit)="onSubmit()">
+          <div class="send-to">
+            <input type="email" formControlName="to" placeholder="To" />
+          </div>
+          <div class="send-to">
+            <input type="text" formControlName="subject" placeholder="Subject" />
+          </div>
+          <div class="send-to">
+            <textarea class="message" formControlName="message" name="" id="" cols="30" rows="10"></textarea>
+          </div>
+          <div class="submit">
+            <button type="submit" class="send-button">Send Email</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
