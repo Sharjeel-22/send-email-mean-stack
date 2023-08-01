@@ -10,12 +10,21 @@
         <form [formGroup]="form" action="" class="form" (ngSubmit)="onSubmit()">
           <div class="send-to">
             <input type="email" formControlName="to" placeholder="To" />
+            <div class="error">
+              <p>This field is required</p>
+            </div>
           </div>
           <div class="send-to">
             <input type="text" formControlName="subject" placeholder="Subject" />
+            <div class="error">
+              <p>This field is required</p>
+            </div>
           </div>
           <div class="send-to">
             <textarea class="message" formControlName="message" name="" id="" cols="30" rows="10"></textarea>
+            <div class="error">
+              <p>This field is required</p>
+            </div>
           </div>
           <div class="submit">
             <button type="submit" class="send-button">Send Email</button>

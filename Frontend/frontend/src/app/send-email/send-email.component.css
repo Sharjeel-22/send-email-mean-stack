@@ -24,6 +24,10 @@
 }
 .send-to {
   display: flex;
+  flex-direction: column;
+}
+.error {
+  color: red;
 }
 .send-to > input {
 border-radius: 5px;

@@ -9,16 +9,16 @@ import { SendEmailService } from '../service/send-email.service';
 })
 export class SendEmailComponent implements OnInit {
   form!: FormGroup;
-  constructor(private sendEmailService:SendEmailService) {}
+  constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.isEmpty();
   }
-  isEmpty(){
-    this.form = new FormGroup({
-      to: new FormControl("",[Validators.email,Validators.required,Validators.pattern("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/")]),
-      subject: new FormControl("",[Validators.required]),
-      message: new FormControl("",[Validators.required])
-    })
+  isEmpty() {
+    this.form = this.formBuilder.group({
+      to: ['', [Validators.email, Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")]],
+      subject: ['', Validators.required],
+      message: ['', Validators.required],
+    });
   }
   onSubmit(): void {
     const data = {
@@ -29,6 +29,6 @@ export class SendEmailComponent implements OnInit {
     // this.sendEmailService.sendEamil(data).subscribe((res:any) => {
     //   console.log('Form Values :: ',data);
     // })
-    console.log('Form Values :: ',data);
+    console.log('Form Values :: ',this.form);
   }
 }
