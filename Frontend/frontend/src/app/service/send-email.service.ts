@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs'
-
+interface EmailData {
+  recipients:string;
+  subject:string;
+  message:string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +14,7 @@ export class SendEmailService {
 
   constructor(private http:HttpClient) { }
 
-  sendEamil(data:any):Observable<any> {
-    return this.http.post(`${this.BASE_URL}/send-email`,data);
+  sendEamil(data:any):Observable<EmailData> {
+    return this.http.post<EmailData>(`${this.BASE_URL}/send-email`,data);
   }
 }

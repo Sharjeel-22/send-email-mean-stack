@@ -2,32 +2,63 @@
   <div class="card">
     <div class="card-header">
       <div class="card-title">
-       <h1> Send Email</h1>
+        <h1>Send Email</h1>
       </div>
     </div>
     <div class="card-body">
       <div class="card-content">
         <form [formGroup]="form" action="" class="form" (ngSubmit)="onSubmit()">
           <div class="send-to">
-            <input type="email" formControlName="to" placeholder="To" />
-            <div class="error">
+            <input
+              type="email"
+              formControlName="recipient"
+              placeholder="Recipient"
+              required
+            />
+            <div
+              class="error"
+              *ngIf="
+                form.controls['recipient'].invalid &&
+                (form.controls['recipient'].touched || form.controls['recipient'].dirty)
+              "
+            >
+              <p *ngIf="form.controls['recipient'].errors?.['required']">
+                Email must be required
+              </p>
+              <p *ngIf="form.controls['recipient'].errors?.['email']">
+                Invalid email format
+              </p>
+            </div>
+          </div>
+          <div class="send-to">
+            <input
+              type="text"
+              formControlName="subject"
+              placeholder="Subject"
+              required
+            />
+            <div class="error" *ngIf="form.controls['subject'].invalid &&
+            (form.controls['subject'].touched || form.controls['subject'].dirty)">
               <p>This field is required</p>
             </div>
           </div>
           <div class="send-to">
-            <input type="text" formControlName="subject" placeholder="Subject" />
-            <div class="error">
-              <p>This field is required</p>
-            </div>
-          </div>
-          <div class="send-to">
-            <textarea class="message" formControlName="message" name="" id="" cols="30" rows="10"></textarea>
-            <div class="error">
+            <textarea
+              class="message"
+              formControlName="message"
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              required
+            ></textarea>
+            <div class="error" *ngIf="form.controls['message'].invalid &&
+            (form.controls['message'].touched || form.controls['message'].dirty)">
               <p>This field is required</p>
             </div>
           </div>
           <div class="submit">
-            <button type="submit" class="send-button">Send Email</button>
+            <button type="submit" class="send-button" [disabled]="form.invalid">Send Email</button>
           </div>
         </form>
       </div>
